@@ -218,13 +218,13 @@ export default function OnePieceTicTacToe() {
   const renderIcon = (player: Player) => {
     if (player === "luffy") {
       return (
-        <div className="relative flex items-center justify-center w-16 h-16">
+        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-orange-400">
           <Image
-            src="/placeholder.svg?height=64&width=64"
-            alt="Luffy hungry face"
-            width={64}
-            height={64}
-            className="animate-bounce rounded-full object-cover w-full h-full bg-orange-400"
+            src="/images/luffy-hungry.jpg"
+            alt="Luffy"
+            width={128}
+            height={128}
+            className="object-cover w-full h-full"
             style={{ imageRendering: "pixelated" }}
           />
         </div>
@@ -298,8 +298,10 @@ export default function OnePieceTicTacToe() {
     <div className="min-h-screen relative flex items-center justify-center px-[10px] max-w-[2000px] mx-auto overflow-hidden">
       {/* One Piece static background */}
       <div className="fixed inset-0 z-0">
-        <div
-          className="w-full h-full bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
+        <img
+          src="/images/one piece.jpg"
+          alt="One Piece background"
+          className="w-full h-full object-cover"
           style={{ filter: "brightness(0.7) contrast(1.1)" }}
         />
         {/* Overlay for better readability */}
