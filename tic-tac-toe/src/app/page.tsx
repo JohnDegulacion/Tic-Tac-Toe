@@ -18,7 +18,6 @@ export default function OnePieceTicTacToe() {
   const [totalWins, setTotalWins] = useState({ luffy: 0, meat: 0 });
   const [gameCount, setGameCount] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [blinkCount, setBlinkCount] = useState(0);
   const [showWinningLine, setShowWinningLine] = useState(true);
   const [gameComplete, setGameComplete] = useState(false);
   const [anchorData, setAnchorData] = useState<
@@ -27,7 +26,6 @@ export default function OnePieceTicTacToe() {
       top: string;
       delay: string;
       duration: string;
-      size: number;
     }[]
   >([]);
   const [bubbleData, setBubbleData] = useState<
@@ -54,26 +52,10 @@ export default function OnePieceTicTacToe() {
       !gameComplete
     ) {
       setIsAnimating(true);
-      setBlinkCount(0);
 
       // Blink animation - 3 times
       const blinkInterval = setInterval(() => {
         setShowWinningLine((prev) => !prev);
-        setBlinkCount((prev) => {
-          const newCount = prev + 1;
-          if (newCount >= 6) {
-            // 6 toggles = 3 complete blinks
-            clearInterval(blinkInterval);
-            setIsAnimating(false);
-            setShowWinningLine(true);
-
-            // Auto-restart after animation
-            setTimeout(() => {
-              resetBoard();
-            }, 500);
-          }
-          return newCount;
-        });
       }, 300); // 300ms intervals for smooth blinking
 
       return () => clearInterval(blinkInterval);
@@ -94,7 +76,6 @@ export default function OnePieceTicTacToe() {
         top: `${Math.random() * 100}%`,
         delay: `${Math.random() * 3}s`,
         duration: `${3 + Math.random() * 2}s`,
-        size: Math.random() * 8 + 4,
       }))
     );
 
@@ -168,7 +149,6 @@ export default function OnePieceTicTacToe() {
     setGameCount((prev) => prev + 1);
     setShowWinningLine(true);
     setIsAnimating(false);
-    setBlinkCount(0);
   };
 
   const startNewSeries = () => {
@@ -180,12 +160,11 @@ export default function OnePieceTicTacToe() {
     setTotalWins({ luffy: 0, meat: 0 });
     setGameCount(0);
     setIsAnimating(false);
-    setBlinkCount(0);
     setShowWinningLine(true);
     setGameComplete(false);
   };
 
-  const renderIcon = (player: Player, size = 40) => {
+  const renderIcon = (player: Player) => {
     if (player === "luffy") {
       return (
         <div className="relative flex items-center justify-center w-16 h-16">
@@ -234,7 +213,7 @@ export default function OnePieceTicTacToe() {
       return (
         <div className="text-center">
           <p className="text-xl font-bold text-white drop-shadow-lg">
-            It's a Draw!
+            It&apos;s a Draw!
           </p>
           <p className="text-slate-200 text-sm drop-shadow-md">
             Luffy is still hungry...
@@ -247,11 +226,11 @@ export default function OnePieceTicTacToe() {
       return (
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
-            {renderIcon(winner as Player, 28)}
+            {renderIcon(winner as Player)}
             <p className="text-xl font-bold text-white drop-shadow-lg">
               {winner === "luffy" ? "Luffy" : "Meat"} Wins!
             </p>
-            {renderIcon(winner as Player, 28)}
+            {renderIcon(winner as Player)}
           </div>
           <p className="text-slate-200 text-sm drop-shadow-md">
             {isAnimating
@@ -305,7 +284,7 @@ export default function OnePieceTicTacToe() {
               animationDuration: anchor.duration,
             }}
           >
-            <Anchor size={anchor.size} className="text-white/15" />
+            <Anchor size={24} className="text-white/15" />
           </div>
         ))}
 
@@ -419,7 +398,7 @@ export default function OnePieceTicTacToe() {
                 Current Turn:
               </span>
               <div className="flex items-center gap-3">
-                {renderIcon(currentPlayer, 32)}
+                {renderIcon(currentPlayer)}
                 <span className="text-white font-bold text-lg drop-shadow-lg">
                   {currentPlayer === "luffy" ? "LUFFY'S TURN" : "MEAT'S TURN"}
                 </span>
@@ -473,7 +452,7 @@ export default function OnePieceTicTacToe() {
 
                 {cell && (
                   <div className="animate-in zoom-in-50 duration-300 relative z-10">
-                    {renderIcon(cell as Player, 40)}
+                    {renderIcon(cell as Player)}
                   </div>
                 )}
               </button>
