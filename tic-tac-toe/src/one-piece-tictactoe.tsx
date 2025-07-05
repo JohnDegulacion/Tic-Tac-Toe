@@ -368,9 +368,14 @@ export default function OnePieceTicTacToe() {
         <div className="flex justify-between items-center mb-0 mt-0 bg-slate-800/70 rounded-lg p-4 border border-blue-400/25 relative z-10 backdrop-blur-sm">
           <div className="flex flex-col items-center gap-1">
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-orange-400">
-              <div className="w-full h-full bg-orange-400 flex items-center justify-center text-white font-bold">
-                L
-              </div>
+              <Image
+                src="/images/luffy-hungry.jpg"
+                alt="Luffy"
+                width={128}
+                height={128}
+                className="object-cover w-full h-full"
+                style={{ imageRendering: "pixelated" }}
+              />
             </div>
             <span className="text-orange-400 font-bold text-sm drop-shadow-md">
               LUFFY
