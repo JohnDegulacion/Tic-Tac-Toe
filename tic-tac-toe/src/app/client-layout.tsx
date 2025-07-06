@@ -22,12 +22,13 @@ export default function ClientLayout({
       >
         <Ribbons
           baseThickness={30}
-          colors={["#ffffff", "#facc15"]}
+          colors={["#4318FF"]}
           speedMultiplier={0.5}
           maxAge={500}
           enableFade={false}
           enableShaderEffect={true}
           effectAmplitude={2}
+          backgroundColor={[0.05, 0.05, 0.1, 1]}
         />
       </div>
 

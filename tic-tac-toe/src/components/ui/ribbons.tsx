@@ -19,18 +19,18 @@ interface RibbonsProps {
 }
 
 const Ribbons = ({
-  colors = ["#FC8EAC"],
+  colors = ["#4318FF"],
   baseSpring = 0.03,
   baseFriction = 0.9,
   baseThickness = 30,
   offsetFactor = 0.05,
   maxAge = 500,
   pointCount = 50,
-  speedMultiplier = 0.6,
+  speedMultiplier = 0.5,
   enableFade = false,
-  enableShaderEffect = false,
+  enableShaderEffect = true,
   effectAmplitude = 2,
-  backgroundColor = [0, 0, 0, 0],
+  backgroundColor = [0.05, 0.05, 0.1, 1],
 }: RibbonsProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -162,7 +162,7 @@ const Ribbons = ({
             friction,
             mouseVelocity: new Vec3(),
             mouseOffset,
-            points: [] as any[],
+            points: [] as Vec3[],
             polyline: null as any,
           };
 
@@ -310,6 +310,7 @@ const Ribbons = ({
         zIndex: 1,
         background: "transparent",
         overflow: "hidden",
+        cursor: "none",
       }}
     />
   );
