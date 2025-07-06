@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ClientLayout from "./client-layout";
+import ClientLayout from "@/app/client-layout";
+import metadata from "./metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,10 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "One Piece Tic-Tac-Toe",
-  description: "A fun One Piece themed Tic-Tac-Toe game",
-};
+export { metadata };
 
 export default function RootLayout({
   children,
@@ -25,6 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>One Piece Tic-Tac-Toe</title>
+        <meta
+          name="description"
+          content="A fun One Piece themed Tic-Tac-Toe game"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
