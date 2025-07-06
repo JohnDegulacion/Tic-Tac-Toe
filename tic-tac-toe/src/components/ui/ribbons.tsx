@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Renderer, Transform, Vec3, Color, Polyline } from "ogl";
 
 interface RibbonsProps {
   colors?: string[];
@@ -48,11 +49,6 @@ const Ribbons = ({
 
     const initRibbons = async () => {
       try {
-        // Dynamic import to avoid SSR issues
-        const { Renderer, Transform, Vec3, Color, Polyline } = await import(
-          "ogl"
-        );
-
         const renderer = new Renderer({
           dpr: Math.min(window.devicePixelRatio || 2, 2), // Cap DPR at 2
           alpha: true,

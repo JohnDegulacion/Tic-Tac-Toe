@@ -31,7 +31,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         {/* Global Ribbons Background */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          style={{
+            height: "100vh",
+            position: "fixed",
+            inset: 0,
+            overflow: "hidden",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        >
           <Ribbons
             baseThickness={30}
             colors={["#ffffff", "#facc15"]}
