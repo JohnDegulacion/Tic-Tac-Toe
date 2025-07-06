@@ -1,9 +1,7 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Ribbons from "@/components/ui/ribbons";
+import ClientLayout from "./client-layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,30 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        {/* Global Ribbons Background */}
-        <div
-          style={{
-            height: "100vh",
-            position: "fixed",
-            inset: 0,
-            overflow: "hidden",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        >
-          <Ribbons
-            baseThickness={30}
-            colors={["#ffffff", "#facc15"]}
-            speedMultiplier={0.5}
-            maxAge={500}
-            enableFade={false}
-            enableShaderEffect={true}
-            effectAmplitude={2}
-          />
-        </div>
-
-        {/* Main Content */}
-        <main className="relative z-10">{children}</main>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
