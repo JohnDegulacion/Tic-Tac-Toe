@@ -163,6 +163,8 @@ const Ribbons = ({
           uEnableShaderEffect: { value: enableShaderEffect ? 1.0 : 0.0 },
           uEffectAmplitude: { value: effectAmplitude },
           uEnableFade: { value: enableFade ? 1.0 : 0.0 },
+          uResolution: { value: [gl.canvas.width, gl.canvas.height] },
+          uDPR: { value: window.devicePixelRatio || 1 },
         },
       });
       polyline.mesh.setParent(scene);

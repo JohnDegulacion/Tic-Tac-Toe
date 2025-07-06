@@ -120,3 +120,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+canvas {
+  display: block;
+  pointer-events: none;
+}
