@@ -35,7 +35,14 @@ const Ribbons = ({
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+      console.error("Container ref is null");
+      return;
+    }
+
+    // Set initial size
+    container.style.width = "100%";
+    container.style.height = "100%";
 
     let cleanup: (() => void) | undefined;
 
@@ -47,8 +54,9 @@ const Ribbons = ({
         );
 
         const renderer = new Renderer({
-          dpr: window.devicePixelRatio || 2,
+          dpr: Math.min(window.devicePixelRatio || 2, 2), // Cap DPR at 2
           alpha: true,
+          antialias: true, // Add antialiasing
         });
         const gl = renderer.gl;
 
@@ -297,7 +305,18 @@ const Ribbons = ({
     backgroundColor,
   ]);
 
-  return <div ref={containerRef} className="relative w-full h-full" />;
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full h-full"
+      style={{
+        position: "relative",
+        zIndex: 1,
+        background: "transparent",
+        overflow: "hidden",
+      }}
+    />
+  );
 };
 
 export default Ribbons;
