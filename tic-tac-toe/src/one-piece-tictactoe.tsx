@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { RotateCcw, Trophy, Anchor } from "lucide-react";
 import Image from "next/image";
+import Ribbons from "@/components/ui/ribbons";
 
 type Player = "luffy" | "meat";
 type Winner = Player | "draw" | null;
@@ -308,6 +309,27 @@ export default function OnePieceTicTacToe() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40"></div>
         {/* Additional overlay */}
         <div className="absolute inset-0 bg-blue-900/20"></div>
+      </div>
+
+      {/* Ribbons Animation Layer */}
+      <div className="fixed inset-0 z-10 pointer-events-none">
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <Ribbons
+            baseThickness={30}
+            colors={["#ffffff", "#facc15"]}
+            speedMultiplier={0.5}
+            maxAge={500}
+            enableFade={false}
+            enableShaderEffect={true}
+          />
+        </div>
       </div>
 
       {/* Floating anchors and bubbles */}
