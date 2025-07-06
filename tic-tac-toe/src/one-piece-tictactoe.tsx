@@ -299,7 +299,7 @@ export default function OnePieceTicTacToe() {
     <div className="min-h-screen relative flex items-center justify-center px-[10px] max-w-[2000px] mx-auto overflow-hidden">
       {/* One Piece static background */}
       <div className="fixed inset-0 z-0">
-        <img
+        <Image
           src="/images/one piece.jpg"
           alt="One Piece background"
           className="w-full h-full object-cover"

@@ -26,7 +26,18 @@ type RibbonLine = {
   points: Vec3[];
   mouseVelocity: Vec3;
   mouseOffset: Vec3;
-  polyline: any;
+  polyline: {
+    mesh: {
+      program: {
+        uniforms: {
+          uTime: { value: number };
+        };
+      };
+      setParent: (parent: Transform) => void;
+    };
+    updateGeometry: () => void;
+    resize: () => void;
+  };
 };
 
 const Ribbons = ({
