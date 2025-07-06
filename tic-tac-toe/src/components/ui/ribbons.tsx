@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { Renderer, Transform, Vec3, Color } from "ogl";
-// @ts-ignore: Polyline is in extras and not typed
-import Polyline from "ogl/src/extras/Polyline.js";
+// @ts-expect-error: Polyline is in extras and not typed
+import { Polyline } from "ogl/src/extras/Polyline.js";
 
 interface RibbonsProps {
   colors?: string[];
@@ -19,6 +19,15 @@ interface RibbonsProps {
   effectAmplitude?: number;
   backgroundColor?: [number, number, number, number];
 }
+
+type RibbonLine = {
+  spring: number;
+  friction: number;
+  points: Vec3[];
+  mouseVelocity: Vec3;
+  mouseOffset: Vec3;
+  polyline: any;
+};
 
 const Ribbons = ({
   colors = ["#FC8EAC"],
@@ -59,7 +68,7 @@ const Ribbons = ({
     container.appendChild(gl.canvas);
 
     const scene = new Transform();
-    const lines: any[] = [];
+    const lines: RibbonLine[] = [];
 
     const vertex = `precision highp float;
       attribute vec3 position, next, prev;
@@ -111,9 +120,7 @@ const Ribbons = ({
 
     function resize() {
       if (!container) return;
-      const width = container.clientWidth || window.innerWidth;
-      const height = container.clientHeight || window.innerHeight;
-      renderer.setSize(width, height);
+      renderer.setSize(container.clientWidth, container.clientHeight);
       lines.forEach((line) => line.polyline.resize());
     }
 
